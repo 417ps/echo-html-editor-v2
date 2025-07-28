@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Echo HTML Editor - Manual Netlify Deployment Instructions
+
+echo "🚀 Echo HTML Editor - Netlify Deployment Guide"
+echo "=============================================="
+echo ""
+echo "Option 1: Drag & Drop Deployment (Easiest)"
+echo "-------------------------------------------"
+echo "1. Open https://app.netlify.com/drop"
+echo "2. Drag the entire 'echo-html-editor' folder to the drop zone"
+echo "3. Your site will be live instantly!"
+echo ""
+echo "Option 2: GitHub Integration (Recommended)"
+echo "------------------------------------------"
+echo "1. Push this folder to a GitHub repository"
+echo "2. Connect the repo to Netlify at https://app.netlify.com"
+echo "3. Enable auto-deploy for continuous updates"
+echo ""
+echo "Option 3: Netlify CLI (Advanced)"
+echo "--------------------------------"
+echo "1. Run: npm install -g netlify-cli"
+echo "2. Run: netlify login"
+echo "3. Run: netlify init"
+echo "4. Run: netlify deploy --prod"
+echo ""
+echo "📁 Current deployment files:"
+ls -la | grep -E '\.(html|js|css|toml|md)$|_redirects'
+echo ""
+echo "✅ Ready to deploy! Choose your preferred method above."
