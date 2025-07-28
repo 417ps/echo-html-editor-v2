@@ -614,6 +614,7 @@ let visualEditor;
 let githubIntegration;
 let folderProcessor;
 let resizablePanels;
+let netlifyIntegration;
 
 document.addEventListener('DOMContentLoaded', () => {
     editor = new EchoHTMLEditor();
@@ -624,6 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
         githubIntegration = new GitHubIntegration(editor);
         folderProcessor = new FolderProcessor(editor);
         resizablePanels = new ResizablePanels(editor);
+        netlifyIntegration = new NetlifyIntegration(editor);
     }, 1000);
 });
 
