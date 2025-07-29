@@ -1,0 +1,44 @@
+[build]
+  publish = "."
+  command = "echo 'Static site - no build required'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; frame-src 'self' blob: data:; worker-src 'self' blob:;"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Content-Type = "text/css"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Content-Type = "text/html"
+
+# Handle SPA routing (if needed in future)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"], Country = ["US"]}
+
+# Security headers for the editor
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=3600"

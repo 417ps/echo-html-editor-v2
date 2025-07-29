@@ -1,0 +1,8 @@
+# Netlify redirects for Echo HTML Editor
+
+# Redirect root to the main editor
+/editor /index.html 200
+/edit /index.html 200
+
+# Handle any missing files by serving the main app
+/* /index.html 200

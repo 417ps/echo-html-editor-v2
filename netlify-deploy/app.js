@@ -136,12 +136,6 @@ class EchoHTMLEditor {
             this.downloadCurrentFile();
         });
 
-        document.getElementById('terminal-btn').addEventListener('click', () => {
-            if (window.terminalInterface) {
-                window.terminalInterface.show();
-            }
-        });
-
         // Window resize handler
         window.addEventListener('resize', () => {
             if (this.editor) {
@@ -621,7 +615,6 @@ let githubIntegration;
 let folderProcessor;
 let resizablePanels;
 let netlifyIntegration;
-let terminalInterface;
 
 document.addEventListener('DOMContentLoaded', () => {
     editor = new EchoHTMLEditor();
@@ -633,7 +626,6 @@ document.addEventListener('DOMContentLoaded', () => {
         folderProcessor = new FolderProcessor(editor);
         resizablePanels = new ResizablePanels(editor);
         netlifyIntegration = new NetlifyIntegration(editor);
-        terminalInterface = new TerminalInterface(editor);
     }, 1000);
 });
 

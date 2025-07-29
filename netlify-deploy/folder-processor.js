@@ -25,14 +25,9 @@ class FolderProcessor {
     }
 
     init() {
-        console.log('FolderProcessor: Initializing...');
         this.enhanceFileUpload();
         this.createProjectPanel();
         this.setupFileTreeEvents();
-        
-        // Make globally accessible for debugging
-        window.folderProcessor = this;
-        console.log('FolderProcessor: Initialized successfully');
     }
 
     enhanceFileUpload() {
@@ -73,10 +68,10 @@ class FolderProcessor {
             this.selectFolder();
         });
         
-        // Add new click handler that doesn't interfere with buttons
+        // Override original click handler
+        dropzone.removeEventListener('click', dropzone.clickHandler);
         dropzone.addEventListener('click', (e) => {
-            // Only trigger folder selection if clicking outside the buttons
-            if (!e.target.closest('.upload-option-btn') && !e.target.closest('.upload-options')) {
+            if (!e.target.closest('.upload-option-btn')) {
                 this.selectFolder();
             }
         });
@@ -108,29 +103,15 @@ class FolderProcessor {
     }
 
     selectFolder() {
-        console.log('FolderProcessor: selectFolder() called');
-        
-        // Check browser support
-        if (!('webkitdirectory' in document.createElement('input'))) {
-            this.mainEditor.showNotification('Your browser does not support folder upload. Please use individual files.', 'error');
-            return;
-        }
-        
         const input = document.createElement('input');
         input.type = 'file';
         input.webkitdirectory = true;
         input.directory = true;
         input.multiple = true;
-        
-        console.log('FolderProcessor: Created folder input element');
-        
         input.addEventListener('change', (e) => {
-            console.log('FolderProcessor: Folder selected, files:', e.target.files.length);
             this.handleFileSelection(e.target.files, true);
         });
-        
         input.click();
-        console.log('FolderProcessor: Folder dialog opened');
     }
 
     async handleDroppedItems(items) {
